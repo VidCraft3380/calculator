@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financiera | Progresiones geometrias</title>
+    <link rel="stylesheet" href="../styles/finance.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <img src="../assets/menu.svg" alt="menu" class="menu">
+            </label>
+            <a href="#" class="enlace">
+                <img src="../assets/logo.svg" alt="Logo" class="logo">
+            </a>
+            <ul>
+                <li><a class="active" href="#">Inicio</a></li>
+                <li><a href="#">Geometría</a></li>
+                <li><a href="#">Financiera</a></li>
+            </ul>
+        </nav>
+        <section></section>
+    </header>
+    <main>
+        <section class="main__calculator">
+            <div class="calulator__form">
+                <div class="form__group">
+                    <h1>Progresion</h1>
+                    <div class="group__item">
+                        <span class="item__title">Progresion</span>
+                        <input type="text" class="group__input" id="progression" name="progression">
+                    </div>
+                    <div class="group__item">
+                        <span class="item__title">n(Número de términos)</span>
+                        <input type="text" class="group__input" id="progressionNumber" name="progressionNumber">
+                    </div>
+                    <div class="group__item">
+                        <button class="group__button" id="calcProgression" name="calcProgression">Calcular</button>
+                    </div>
+                    <div class="group__result" id="progressionResult">
+                        <ul class="result__list">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="form__group">
+                    <h1>Encontrar numero de terminos</h1>
+                    <div class="group__item">
+                        <span class="item__title">A<sub>1</sub>(Primer término)</span>
+                        <input type="text" class="group__input" id="numberA1" name="numberA1">
+                    </div>
+                    <div class="group__item">
+                        <span class="item__title">A<sub>n</sub>(Término n-ésimo)</span>
+                        <input type="text" class="group__input" id="numberAn" name="numberAn">
+                    </div>
+                    <div class="group__item">
+                        <span class="item__title">r(Razón)</span>
+                        <input type="text" class="group__input" id="numberR" name="numberR">
+                    </div>
+                    <div class="group__item">
+                        <button class="group__button" id="calcNumber" name="calcNumber">Calcular</button>
+                    </div>
+                    <div class="group__result" id="numberResult">
+                        <ul class="result__list">
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="form__group">
+                    <h1>Generar sucecion</h1>
+                    <div class="group__item">
+                        <span class="item__title">A<sub>1</sub>(Primer término)</span>
+                        <input type="text" class="group__input" name="generateA1" id="generateA1">
+                    </div>
+                    <div class="group__item">
+                        <span class="item__title">r(Razón)</span>
+                        <input type="text" class="group__input" name="generateR" id="generateR">
+                    </div>
+                    <div class="group__item">
+                        <span class="item__term">n(Número de términos)</span>
+                        <input type="text" class="group__input" name="generateN" id="generateN">
+                    </div>
+                    <div class="group__item">
+                        <button class="group__button" id="generate" name="generate">Genera</button>
+                    </div>
+                    <div class="group__result" id="generateResult">
+                        <ul class="result__list">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="fraction"><div class="fraction__numerator"></div><span class="fraction__line"></span><div class="fraction__denominator"></div></div>
+        </section>
+    </main>
+    <script src="../../js/tools/inputs.js"></script>
+    <script src="../../js/tools/result.js"></script>
+    <script src="../../js/modules/fractions/script.js"></script>
+    <script src="../../js/modules/calc/script.js"></script>
+    <script src="../../js/modules/finance/index.js"></script>
+    <script src="../../js/modules/finance/progressions/index.js"></script>
+    <script src="../../js/modules/finance/progressions/geometric.js"></script>
+    <script>
+        document.getElementById("calcProgression").addEventListener("click", ()=>{
+            var data = {
+                "progression": document.getElementById("progression").value,
+                "progressionNumber": document.getElementById("progressionNumber").value,
+            }
+
+            const progression = new Geometric(String(data.progression), undefined, undefined, undefined, String(data.progressionNumber))
+
+            progression.calcProgression()
+            progression.calcReason()
+            progression.calcAn()
+            progression.calcPlus()
+            progression.calcNumber()
+
+            const Response = new Result()
+
+            var result = [
+                Response.resultResponse("A<sub>1</sub>(Primer término)", progression.a1, `A<sub>1</sub>= ${progression.a1}`),
+                Response.resultResponse("A<sub>2</sub>(Segundo término)", progression.a2, `A<sub>2</sub>= ${progression.a2}`),
+                Response.resultResponse("d(Diferencia)", progression.reason.value, progression.reason.process),
+                Response.resultResponse("A<sub>n</sub>(Término n-ésimo)", progression.an.value, progression.an.process),
+                Response.resultResponse("n(Número de términos)", progression.number.value, progression.number.process),
+                Response.resultResponse("S<sub>n</sub>(plusa de términos)", progression.plus.value, progression.plus.process),
+            ]
+            Response.result = result
+            Response.box = '#progressionResult .result__list'
+
+            Response.display()
+            Response.process()
+        })
+        
+        document.getElementById("calcNumber").addEventListener("click", ()=>{
+            var data = {
+                "A1": document.getElementById("numberA1").value,
+                "An": document.getElementById("numberAn").value,
+                "r": document.getElementById("numberR").value,
+            }
+
+            const progression = new Geometric(undefined, new Inputs(data.A1).read(), new Inputs(data.An).read(), new Inputs(data.r).read(), undefined)
+
+            if(typeof progression.a1 === "object"){
+                progression.a1= Number(progression.a1.convertDecimal())
+            }
+            if(typeof progression.an.value === "object"){
+                progression.an.value= Number(progression.an.value.convertDecimal())
+            }
+            progression.calcReason()
+            progression.calcAn()
+            progression.calcNumber()
+            progression.calcPlus()
+
+            const Response = new Result()
+
+            var result = [
+                Response.resultResponse("A<sub>1</sub>(Primer término)", progression.a1, `A<sub>1</sub>= ${progression.a1}`),
+                Response.resultResponse("r(Razón)", progression.reason.value, progression.reason.process),
+                Response.resultResponse("A<sub>n</sub>(Término n-ésimo)", progression.an.value, progression.an.process),
+                Response.resultResponse("n(Número de términos)", progression.number.value, progression.number.process),
+                Response.resultResponse("S<sub>n</sub>(plusa de términos)", progression.plus.value, progression.plus.process),
+            ]
+            Response.result = result
+            Response.box = '#numberResult .result__list'
+
+            Response.display()
+            Response.process()
+        })
+        
+        document.getElementById("generate").addEventListener("click", ()=>{
+            var data = {
+                "A1": document.getElementById("generateA1").value,
+                "r": document.getElementById("generateR").value,
+                "N": document.getElementById("generateN").value,
+            }
+
+            const progression = new Geometric(undefined, new Inputs(data.A1).read(), undefined, new Inputs(data.r).read(), data.N)
+
+            progression.calcReason()
+            progression.calcGenerate()
+            progression.calcAn()
+            progression.calcPlus()
+
+            const Response = new Result()
+
+            var result = [
+                Response.resultResponse("Progresion", progression.calcGenerate(), ""),
+                Response.resultResponse("A<sub>1</sub>(Primer término)", progression.a1, `A<sub>1</sub>= ${progression.a1}`),
+                Response.resultResponse("r(Razón)", progression.reason.value, progression.reason.process),
+                Response.resultResponse("A<sub>n</sub>(Término n-ésimo)", progression.an.value, progression.an.process),
+                Response.resultResponse("n(Número de términos)", progression.number.value, progression.number.process),
+                Response.resultResponse("S<sub>n</sub>(plusa de términos)", progression.plus.value, progression.plus.process),
+            ]
+            Response.result = result
+            Response.box = '#generateResult .result__list'
+
+            Response.display()
+            Response.process()
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometría | Triángulo</title>
+    <link rel="stylesheet" href="../styles/geometry.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <img src="../assets/menu.svg" alt="menu" class="menu">
+            </label>
+            <a href="#" class="enlace">
+                <img src="../assets/logo.svg" alt="Logo" class="logo">
+            </a>
+            <ul>
+                <li><a class="active" href="#">Inicio</a></li>
+                <li><a href="#">Geometría</a></li>
+                <li><a href="#">Financiera</a></li>
+            </ul>
+        </nav>
+        <section></section>
+    </header>
+    <main>
+        <section class="main__calculator">
+            <div class="calculator__item">
+                <div class="item__group">
+                    <span class="group__title">a(Lado)</span>
+                    <input type="text" name="sideA" id="sideA">
+                </div>
+                <div class="item__group">
+                    <span class="group__title">b(Lado)</span>
+                    <input type="text" name="sideB" id="sideB">
+                </div>
+                <div class="item__group">
+                    <span class="group__title">c(Lado)</span>
+                    <input type="text" name="sideC" id="sideC">
+                </div>
+                <div class="item__group">
+                    <span class="group__title">h(Altura)</span>
+                    <input type="text" name="height" id="height">
+                </div>
+                <div class="item__group">
+                    <span class="group__title">A(Área)</span>
+                    <input type="text" name="area" id="area">
+                </div>
+                <div class="item__group">
+                    <span class="group__title">P(Perímetro)</span>
+                    <input type="text" name="perimeter" id="perimeter">
+                </div>
+                <div class="item__group">
+                    <span class="group__title">S(semiperímetro)</span>
+                    <input type="text" name="semiperimeter" id="semiperimeter">
+                </div>
+                <div class="item__group">
+                    <div class="item__group">
+                        <span class="group__title">Medidas</span>
+                        <select name="measures" id="measures">
+                            <option value="m">M(Metros)</option>
+                            <option value="cm">Cm(Centímetros)</option>
+                            <option value="km">Km(Kilómetros)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="item__group">
+                    <button class="group__button" id="calc" name="calc">Calcular</button>
+                </div>
+            </div>
+            <div class="calculator__result">
+                <ul class="result__list"></ul>
+            </div>
+        </section>
+    </main>
+    <script src="../js/tools/inputs.js"></script>
+    <script src="../js/tools/result.js"></script>
+    <script src="../js/modules/fractions/script.js"></script>
+    <script src="../js/modules/calc/script.js"></script>
+    <script src="../js/modules/theorems/pitagoras.js"></script>
+    <script src="../js/modules/geometry/index.js"></script>
+    <script src="../js/modules/geometry/2d/index.js"></script>
+    <script src="../js/modules/geometry/2d/triangles/index.js"></script>
+    <script src="../js/modules/geometry/2d/triangles/triangle.js"></script>
+    <script> 
+        document.getElementById("calc").addEventListener("click", ()=>{
+            var data = {
+                "sideA": document.getElementById("sideA").value,
+                "sideB": document.getElementById("sideB").value,
+                "sideC": document.getElementById("sideC").value,
+                "height": document.getElementById("height").value,
+                "area": document.getElementById("area").value,
+                "perimeter": document.getElementById("perimeter").value,
+                "semiperimeter": document.getElementById("semiperimeter").value,
+                "measures": document.getElementById("measures").value,
+            }
+            const figure = new Triangle(new Inputs(data.sideA).read(), new Inputs(data.sideB).read(), new Inputs(data.sideC).read(), new Inputs(data.height).read(), new Inputs(data.area).read(), new Inputs(data.perimeter).read(), new Inputs(data.semiperimeter).read(), data.measures)
+
+            if(typeof figure.height.value === "object"){
+                figure.height.value= figure.height.value.convertDecimal()
+            }
+            if(typeof figure.sideA.value === "object"){
+                figure.sideA.value= figure.sideA.value.convertDecimal()
+            }
+            if(typeof figure.base.value === "object"){
+                figure.base.value= figure.base.value.convertDecimal()
+            }
+            if(typeof figure.sideC.value === "object"){
+                figure.sideC.value= figure.sideC.value.convertDecimal()
+            }
+            if(typeof figure.perimeter.value === "object"){
+                figure.perimeter.value= figure.perimeter.value.convertDecimal()
+            }
+            if(typeof figure.area.value === "object"){
+                figure.area.value= figure.area.value.convertDecimal()
+            }
+            if(typeof figure.semiperimeter.value === "object"){
+                figure.semiperimeter.value= figure.semiperimeter.value.convertDecimal()
+            }
+            
+            figure.calcSideA()
+            figure.calcBase()
+            figure.calcSideC()
+            figure.calcHeight()
+            figure.calcArea()
+            figure.calcPerimeter()
+            figure.calcSemiperimeter()
+            
+            const Response = new Result()
+            
+            var result = [
+                Response.resultResponse("a(Lado)", figure.sideA.value+figure.measure, figure.sideA.process),
+                Response.resultResponse("b(Lado)", figure.base.value+figure.measure, figure.base.process),
+                Response.resultResponse("c(Lado)", figure.sideC.value+figure.measure, figure.sideC.process),
+                Response.resultResponse("h(Altura)", figure.height.value+figure.measure, figure.height.process),
+                Response.resultResponse("A(Área)", figure.area.value+figure.measure+'<sup>2</sup>', figure.area.process),
+                Response.resultResponse("P(Perímetro)", figure.perimeter.value+figure.measure, figure.perimeter.process),
+                Response.resultResponse("S(semiperímetro)", figure.semiperimeter.value+figure.measure, figure.semiperimeter.process),
+            ]
+            Response.result = result
+            Response.box = '.calculator__result .result__list'
+            
+            Response.display()
+            Response.process()
+        })
+    </script>
+</body>
+</html>

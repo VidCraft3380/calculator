@@ -1,0 +1,269 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  list-style: none;
+  text-decoration: none;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #202124;
+}
+body header nav {
+  background: #00123F;
+  height: 80px;
+  width: 100%;
+}
+body header .enlace {
+  position: absolute;
+  padding: 20px 50px;
+}
+body header .logo {
+  height: 40px;
+}
+body header .menu {
+  height: 40px;
+}
+body header nav ul {
+  float: right;
+  margin-right: 20px;
+}
+body header nav ul li {
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
+}
+body header nav ul li a {
+  color: #fff;
+  font-size: 16px;
+  padding: 7px 13px;
+  border-radius: 3px;
+}
+body header li a.active, body header li a:hover {
+  background: #fff;
+  color: #000;
+  transition: 0.5s;
+}
+body header .checkbtn {
+  font-size: 30px;
+  color: #fff;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+body header #check,
+body header #open {
+  display: none;
+}
+body header section {
+  display: none;
+  background-size: cover;
+  background-position: center center;
+  height: calc(100vh - 80px);
+}
+@media (max-width: 952px) {
+  body header .enlace {
+    padding-left: 20px;
+  }
+  body header nav ul li a {
+    font-size: 16px;
+  }
+}
+@media (max-width: 858px) {
+  body header .checkbtn {
+    display: flex;
+    height: 100%;
+    align-items: center;
+  }
+  body header ul {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #42869B;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all 0.5s;
+  }
+  body header nav ul li {
+    display: block;
+    margin: 30px 0;
+    line-height: 30px;
+  }
+  body header nav ul li a {
+    font-size: 20px;
+  }
+  body header li a:hover, body header li a.active {
+    background: none;
+  }
+  body header #check:checked ~ ul {
+    left: 0;
+  }
+}
+body main {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  width: 100%;
+}
+body main .main__calculator {
+  display: block;
+  width: 600px;
+}
+body main .main__calculator .calculator__inputs {
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #fff;
+  margin-bottom: 15px;
+}
+body main .main__calculator .calculator__inputs span {
+  display: block;
+  width: 100%;
+  height: 50%;
+  font-size: 16px;
+}
+body main .main__calculator .calculator__inputs .inputs__ans {
+  color: #969ba1;
+  font-size: 12px;
+}
+body main .main__calculator .calculator__work {
+  display: block;
+  width: 100%;
+}
+body main .main__calculator .calculator__work .work__items {
+  display: block;
+  width: 100%;
+}
+body main .main__calculator .calculator__work .work__items tbody {
+  display: block;
+  width: 100%;
+}
+body main .main__calculator .calculator__work .work__items tbody .items__row {
+  display: block;
+  margin-bottom: 10px;
+}
+body main .main__calculator .calculator__work .work__items tbody .items__row .row__item {
+  display: inline-block;
+  width: 15%;
+  margin: 0 0.6%;
+}
+body main .main__calculator .calculator__work .work__items tbody .items__row .row__item .item__btn {
+  display: block;
+  width: 100%;
+}
+body main .main__calculator .calculator__work .work__items tbody .items__row .row__item .item__btn button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #5f6368;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+}
+body main .main__calculator .calculator__work .work__options {
+  display: block;
+  margin-top: 30px;
+}
+body main .main__calculator .calculator__work .work__options button {
+  display: inline-block;
+  width: 60px;
+  padding: 10px;
+  border: 2px solid #5f6368;
+  background: transparent;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+}
+body main .main__calculator .calculator__work .work__options .btn:first-child {
+  margin-right: 10px;
+}
+@media (max-width: 858px) {
+  body main {
+    padding-top: 5px;
+  }
+  body main .main__calculator {
+    display: block;
+    width: 100%;
+  }
+  body main .main__calculator .calculator__inputs {
+    display: block;
+    width: 65%;
+    height: 50px;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #fff;
+    margin-bottom: 15px;
+  }
+  body main .main__calculator .calculator__inputs span {
+    display: block;
+    width: 100%;
+    height: 50%;
+    font-size: 16px;
+  }
+  body main .main__calculator .calculator__inputs .inputs__ans {
+    color: #969ba1;
+    font-size: 12px;
+  }
+  body main .main__calculator .calculator__work {
+    display: block;
+    width: 100%;
+  }
+  body main .main__calculator .calculator__work .work__items {
+    display: block;
+    width: 100%;
+  }
+  body main .main__calculator .calculator__work .work__items tbody {
+    display: block;
+    width: 100%;
+  }
+  body main .main__calculator .calculator__work .work__items tbody .items__row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  body main .main__calculator .calculator__work .work__items tbody .items__row .row__item {
+    display: inline-block;
+    width: 15%;
+    margin: 0 0.6%;
+  }
+  body main .main__calculator .calculator__work .work__items tbody .items__row .row__item .item__btn {
+    display: block;
+    width: 100%;
+  }
+  body main .main__calculator .calculator__work .work__items tbody .items__row .row__item .item__btn button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #5f6368;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+  }
+  body main .main__calculator .calculator__work .work__options {
+    display: block;
+    margin-top: 30px;
+  }
+  body main .main__calculator .calculator__work .work__options button {
+    display: inline-block;
+    width: 60px;
+    padding: 10px;
+    border: 2px solid #5f6368;
+    background: transparent;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+  }
+  body main .main__calculator .calculator__work .work__options .btn:first-child {
+    margin-right: 10px;
+  }
+}/*# sourceMappingURL=calculator.css.map */

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometría | Círculo</title>
+    <link rel="stylesheet" href="../styles/geometry.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <img src="../assets/menu.svg" alt="menu" class="menu">
+            </label>
+            <a href="#" class="enlace">
+                <img src="../assets/logo.svg" alt="Logo" class="logo">
+            </a>
+            <ul>
+                <li><a class="active" href="#">Inicio</a></li>
+                <li><a href="#">Geometría</a></li>
+                <li><a href="#">Financiera</a></li>
+            </ul>
+        </nav>
+        <section></section>
+    </header>
+    <main>
+        <section class="main__calculator">
+            <div class="calculator__item">
+                <div class="item__group">
+                    <span class="group__title">r(Radio)</span>
+                    <input type="text" name="radio" id="radio">
+                </div>
+                <div class="item__group">
+                    <span class="group__title">d(Diametro)</span>
+                    <input type="text" name="diameter" id="diameter">
+                </div>
+                <div class="item__group">
+                    <span class="group__title">A(Área)</span>
+                    <input type="text" name="area" id="area">
+                </div>
+                <div class="item__group">
+                    <span class="group__title">P(Perímetro)</span>
+                    <input type="text" name="perimeter" id="perimeter">
+                </div>
+                <div class="item__group">
+                    <span class="group__title">S(semiperímetro)</span>
+                    <input type="text" name="semiperimeter" id="semiperimeter">
+                </div>
+                <div class="item__group">
+                    <span class="group__title">Medidas</span>
+                    <select name="measures" id="measures">
+                        <option value="m">M(Metros)</option>
+                        <option value="cm">Cm(Centímetros)</option>
+                        <option value="km">Km(Kilómetros)</option>
+                    </select>
+                </div>
+                <div class="item__group">
+                    <button class="group__button" id="calc" name="calc">Calcular</button>
+                </div>
+            </div>
+            <div class="calculator__result">
+                <ul class="result__list"></ul>
+            </div>
+        </section>
+    </main>
+    <script src="../js/tools/inputs.js"></script>
+    <script src="../js/tools/result.js"></script>
+    <script src="../js/modules/fractions/script.js"></script>
+    <script src="../js/modules/calc/script.js"></script>
+    <script src="../js/modules/geometry/index.js"></script>
+    <script src="../js/modules/geometry/2d/index.js"></script>
+    <script src="../js/modules/geometry/2d/circumference/index.js"></script>
+    <script src="../js/modules/geometry/2d/circumference/circle.js"></script>
+    <script>
+        if(document.getElementById("check").checked = false){
+            scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+                window.onscroll = function() {
+                    window.scrollTo(scrollLeft, scrollTop);
+                }
+        }else {
+            window.onscroll = function() {};
+        }
+    </script>
+    <script>
+        document.getElementById("calc").addEventListener("click", ()=>{
+            var data = {
+                "radio": document.getElementById("radio").value,
+                "diameter": document.getElementById("diameter").value,
+                "area": document.getElementById("area").value,
+                "perimeter": document.getElementById("perimeter").value,
+                "semiperimeter": document.getElementById("semiperimeter").value,
+                "measures": document.getElementById("measures").value,
+            }
+
+            const figure = new Circle(new Inputs(data.radio).read(), new Inputs(data.diameter).read(), new Inputs(data.area).read(), new Inputs(data.perimeter).read(), new Inputs(data.semiperimeter).read(), String(data.measures))
+
+            if(typeof figure.radio.value === "object"){
+                figure.radio.value= figure.radio.value.convertDecimal()
+            }
+            if(typeof figure.diameter.value === "object"){
+                figure.diameter.value= figure.diameter.value.convertDecimal()
+            }
+            if(typeof figure.area.value === "object"){
+                figure.area.value= figure.area.value.convertDecimal()
+            }
+            if(typeof figure.perimeter.value === "object"){
+                figure.perimeter.value= figure.perimeter.value.convertDecimal()
+            }
+            if(typeof figure.semiperimeter.value === "object"){
+                figure.semiperimeter.value= figure.semiperimeter.value.convertDecimal()
+            }
+
+            figure.calcRadio()
+            figure.calcDiameter()
+            figure.calcArea()
+            figure.calcPerimeter()
+            figure.calcSemiperimeter()
+
+            const Response = new Result()
+
+            var result = [
+                Response.resultResponse("r(Radio)", figure.radio.value+figure.measure, figure.radio.process),
+                Response.resultResponse("d(Diametro)", figure.diameter.value+figure.measure, figure.diameter.process),
+                Response.resultResponse("A(Área)", figure.area.value+figure.measure+'<sup>2</sup>', figure.area.process),
+                Response.resultResponse("P(Perímetro)", figure.perimeter.value+figure.measure, figure.perimeter.process),
+                Response.resultResponse("S(semiperímetro)", figure.semiperimeter.value+figure.measure, figure.semiperimeter.process),
+            ]
+            Response.result = result
+            Response.box = '.calculator__result .result__list'
+
+            Response.display()
+            Response.process()
+        })
+    </script>
+</body>
+</html>

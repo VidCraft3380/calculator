@@ -1,0 +1,271 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    list-style: none;
+    text-decoration: none;
+}
+html {
+    font-size: 62.5%;
+    font-family: sans-serif;
+}
+body {
+    background-color: #202124;
+    header {
+        nav{
+            background: #00123F;
+            height: 80px;
+            width: 100%;
+        }
+        .enlace{
+            position: absolute;
+            padding: 20px 50px;
+        }
+        .logo{
+            height: 40px;
+        }
+        .menu{
+            height: 40px;
+        }
+        nav ul{
+            float: right;
+            margin-right: 20px;
+        }
+        nav ul li{
+            display: inline-block;
+            line-height: 80px;
+            margin: 0 5px;
+        }
+        nav ul li a{
+            color: #fff;
+            font-size: 16px;
+            padding: 7px 13px;
+            border-radius: 3px;
+        }
+        li a.active, li a:hover{
+            background: #fff;
+            color: #000;
+            transition: .5s;
+        }
+        .checkbtn{
+            font-size: 30px;
+            color: #fff;
+            float: right;
+            line-height: 80px;
+            margin-right: 40px;
+            cursor: pointer;
+            display: none;
+        }
+        #check,
+        #open{
+            display: none;
+        }
+        section{
+            display: none;
+            background-size: cover;
+            background-position: center center;
+            height: calc(100vh - 80px);
+        }
+        
+        @media (max-width: 952px){
+            .enlace{
+                padding-left: 20px;
+            }
+            nav ul li a{
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 858px){
+            .checkbtn{
+                display: flex;
+                height: 100%;
+                align-items: center;
+            }
+            ul{
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: #42869B;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition: all .5s;
+            }
+            nav ul li{
+                display: block;
+                margin: 30px 0;
+                line-height: 30px;
+            }
+            nav ul li a{
+                font-size: 20px;
+            }
+            li a:hover, li a.active{
+                background: none;
+            }
+            #check:checked ~ ul{
+                left:0;
+            }
+        }
+    }
+    main {
+        display: flex;
+        justify-content: center;
+        padding: 30px;
+        width: 100%;
+        .main__calculator {
+            display: block;
+            width: 600px;
+            .calculator__inputs {
+                display: block;
+                width: 100%;
+                height: 50px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid #fff;
+                margin-bottom: 15px;
+                span {
+                    display: block;
+                    width: 100%;
+                    height: 50%;
+                    font-size: 16px;
+                }
+                .inputs__ans {
+                    color: #969ba1;
+                    font-size: 12px;
+                }
+            }
+            .calculator__work {
+                display: block;
+                width: 100%;
+                .work__items {
+                    display: block;
+                    width: 100%;
+                    tbody {
+                        display: block;
+                        width: 100%;
+                        .items__row {
+                            display: block;
+                            margin-bottom: 10px;
+                            .row__item {
+                                display: inline-block;
+                                width: 15%;
+                                margin: 0 0.6%;
+                                .item__btn {
+                                    display: block;
+                                    width: 100%;
+                                    button {
+                                        display: block;
+                                        width: 100%;
+                                        padding: 10px;
+                                        background-color: #5f6368;
+                                        border-radius: 5px;
+                                        outline: none;
+                                        border: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .work__options {
+                    display: block;
+                    margin-top: 30px;
+                    button{
+                        display: inline-block;
+                        width: 60px;
+                        padding: 10px;
+                        border: 2px solid #5f6368;
+                        background: transparent;
+                        border-radius: 5px;
+                        outline: none;
+                        cursor: pointer;
+                    }
+                    .btn:first-child {
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+    @media (max-width: 858px) {
+        main {
+            padding-top: 5px;
+            .main__calculator {
+                display: block;
+                width: 100%;
+                .calculator__inputs {
+                    display: block;
+                    width: 65%;
+                    height: 50px;
+                    margin: 0 auto;
+                    padding-bottom: 10px;
+                    border-bottom: 2px solid #fff;
+                    margin-bottom: 15px;
+                    span {
+                        display: block;
+                        width: 100%;
+                        height: 50%;
+                        font-size: 16px;
+                    }
+                    .inputs__ans {
+                        color: #969ba1;
+                        font-size: 12px;
+                    }
+                }
+                .calculator__work {
+                    display: block;
+                    width: 100%;
+                    .work__items {
+                        display: block;
+                        width: 100%;
+                        tbody {
+                            display: block;
+                            width: 100%;
+                            .items__row {
+                                display: flex;
+                                justify-content: center;
+                                margin-bottom: 10px;
+                                .row__item {
+                                    display: inline-block;
+                                    width: 15%;
+                                    margin: 0 0.6%;
+                                    .item__btn {
+                                        display: block;
+                                        width: 100%;
+                                        button {
+                                            display: block;
+                                            width: 100%;
+                                            padding: 10px;
+                                            background-color: #5f6368;
+                                            border-radius: 5px;
+                                            outline: none;
+                                            border: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .work__options {
+                        display: block;
+                        margin-top: 30px;
+                        button{
+                            display: inline-block;
+                            width: 60px;
+                            padding: 10px;
+                            border: 2px solid #5f6368;
+                            background: transparent;
+                            border-radius: 5px;
+                            outline: none;
+                            cursor: pointer;
+                        }
+                        .btn:first-child {
+                            margin-right: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

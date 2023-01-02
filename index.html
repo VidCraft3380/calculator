@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora científica</title>
+    <link rel="stylesheet" href="styles/calculator.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <img src="assets/menu.svg" alt="menu" class="menu">
+            </label>
+            <a href="#" class="enlace">
+                <img src="assets/logo.svg" alt="Logo" class="logo">
+            </a>
+            <ul>
+                <li><a class="active" href="#">Inicio</a></li>
+                <li><a href="#">Geometría</a></li>
+                <li><a href="#">Financiera</a></li>
+            </ul>
+        </nav>
+        <section></section>
+    </header>
+    <main>
+        <section class="main__calculator">
+            <div class="calculator__inputs">
+                <span class="inputs__ans" id="ansValue"></span>
+                <span class="inputs__display" id="display"></span>
+            </div>
+            <div class="calculator__work">
+                <table class="work__items">
+                    <tr class="items__row">
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn" id="inv" name="inv" onclick="calculator.inv()">Inv</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn change" id="in" name="in" onclick="calculator.display('In(')">In</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn" id="(" onclick="calculator.display('(')" name="(">(</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn" id=")" onclick="calculator.display(')')" name=")">)</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn" id="%" onclick="calculator.display('%x')" name="%">%</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn" id="ac"  onclick="calculator.delete()" name="ac">AC</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="items__row">
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn change" id="cos" onclick="calculator.display('cos(')" name="cos">cos</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn change" id="tan" onclick="calculator.display('tan(')" name="tan">tan</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn number" id="7" onclick="calculator.display('7')" name="7">7</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn number" id="8" onclick="calculator.display('8')" name="8">8</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn number" id="9" onclick="calculator.display('9')" name="9">9</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn" id="÷" onclick="calculator.display('÷')" name="÷">÷</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="items__row">
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn change" id="sin" onclick="calculator.display('sin(')" name="sin">sin</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn change" id="log" onclick="calculator.display('log(')" name="log">log</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn number" id="4" onclick="calculator.display('4')" name="4">4</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn number" id="5" onclick="calculator.display('5')" name="5">5</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn number" id="6" onclick="calculator.display('6')" name="6">6</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn" id="x" onclick="calculator.display('x')" name="x">x</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="items__row">
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn change" id="√" onclick="calculator.display('√(')" name="√">√</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn potency change" id="^" onclick="calculator.potency()" name="^">x<sup>y</sup></button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn number" id="1" onclick="calculator.display('1')" name="1">1</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn number" id="2" onclick="calculator.display('2')" name="2">2</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn number" id="3" onclick="calculator.display('3')" name="3">3</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn" id="-" onclick="calculator.display('-')" name="-">-</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="items__row">
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn number" id="ans" onclick="calculator.display('Ans')" name="Ans">Ans</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn change" id="π" onclick="calculator.display('π')" name="π">π</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn number" id="0" onclick="calculator.display('0')" name="0">0</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn" id="." onclick="calculator.display('.')" name=".">.</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn calc" id="=" onclick="calculator.calc()" name="=">=</button>
+                            </div>
+                        </td>
+                        <td class="row__item">
+                            <div class="item__btn">
+                                <button class="btn" id="+" onclick="calculator.display('+')" name="+">+</button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="work__options">
+                    <button class="btn" id="123">123</button>
+                    <button class="btn" id="fx">Fx</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="js/modules/calculator/script.js"></script>
+    <script>
+        if (window.screen.width <= 858) {
+            document.querySelector(".work__items").innerHTML = `<tr class="items__row"> <td class="row__item"> <div class="item__btn"> <button class="btn" id="(" onclick="calculator.display('(')" name="(">(</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id=")" onclick="calculator.display(')')" name=")">)</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="%" onclick="calculator.display('%x')" name="%">%</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="ac" onclick="calculator.delete()" name="ac">AC</button> </div></td></tr><tr class="items__row"> <td class="row__item"> <div class="item__btn"> <button class="btn number" id="7" onclick="calculator.display('7')" name="7">7</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn number" id="8" onclick="calculator.display('8')" name="8">8</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn number" id="9" onclick="calculator.display('9')" name="9">9</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="÷" onclick="calculator.display('÷')" name="÷">÷</button> </div></td></tr><tr class="items__row"> <td class="row__item"> <div class="item__btn"> <button class="btn number" id="4" onclick="calculator.display('4')" name="4">4</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn number" id="5" onclick="calculator.display('5')" name="5">5</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn number" id="6" onclick="calculator.display('6')" name="6">6</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="x" onclick="calculator.display('x')" name="x">x</button> </div></td></tr><tr class="items__row"> <td class="row__item"> <div class="item__btn"> <button class="btn number" id="1" onclick="calculator.display('1')" name="1">1</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn number" id="2" onclick="calculator.display('2')" name="2">2</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn number" id="3" onclick="calculator.display('3')" name="3">3</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="-" onclick="calculator.display('-')" name="-">-</button> </div></td></tr><tr class="items__row"> <td class="row__item"> <div class="item__btn"> <button class="btn number" id="0" onclick="calculator.display('0')" name="0">0</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="." onclick="calculator.display('.')" name=".">.</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn calc" id="=" onclick="calculator.calc()" name="=">=</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="+" onclick="calculator.display('+')" name="+">+</button> </div></td></tr>`
+            
+            document.getElementById("123").addEventListener("click", ()=>{
+                document.querySelector(".work__items").innerHTML = `<tr class="items__row"> <td class="row__item"> <div class="item__btn"> <button class="btn" id="(" onclick="calculator.display('(')" name="(">(</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id=")" onclick="calculator.display(')')" name=")">)</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="%" onclick="calculator.display('%x')" name="%">%</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="ac" onclick="calculator.delete()" name="ac">AC</button> </div></td></tr><tr class="items__row"> <td class="row__item"> <div class="item__btn"> <button class="btn number" id="7" onclick="calculator.display('7')" name="7">7</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn number" id="8" onclick="calculator.display('8')" name="8">8</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn number" id="9" onclick="calculator.display('9')" name="9">9</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="÷" onclick="calculator.display('÷')" name="÷">÷</button> </div></td></tr><tr class="items__row"> <td class="row__item"> <div class="item__btn"> <button class="btn number" id="4" onclick="calculator.display('4')" name="4">4</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn number" id="5" onclick="calculator.display('5')" name="5">5</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn number" id="6" onclick="calculator.display('6')" name="6">6</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="x" onclick="calculator.display('x')" name="x">x</button> </div></td></tr><tr class="items__row"> <td class="row__item"> <div class="item__btn"> <button class="btn number" id="1" onclick="calculator.display('1')" name="1">1</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn number" id="2" onclick="calculator.display('2')" name="2">2</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn number" id="3" onclick="calculator.display('3')" name="3">3</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="-" onclick="calculator.display('-')" name="-">-</button> </div></td></tr><tr class="items__row"> <td class="row__item"> <div class="item__btn"> <button class="btn number" id="0" onclick="calculator.display('0')" name="0">0</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="." onclick="calculator.display('.')" name=".">.</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn calc" id="=" onclick="calculator.calc()" name="=">=</button> </div></td><td class="row__item"> <div class="item__btn"> <button class="btn" id="+" onclick="calculator.display('+')" name="+">+</button> </div></td></tr>` 
+            })
+            document.getElementById("fx").addEventListener("click", ()=>{
+                document.querySelector(".work__items").innerHTML = `<tr class="items__row"><td class="row__item"><div class="item__btn"><button class="btn change" id="in" name="in" onclick="calculator.display('In(')">In</button></div></td><td class="row__item"><div class="item__btn"><button class="btn change" id="cos" onclick="calculator.display('cos(')" name="cos">cos</button></div></td><td class="row__item"><div class="item__btn"><button class="btn change" id="tan" onclick="calculator.display('tan(')" name="tan">tan</button></div></td><td class="row__item"><div class="item__btn"><button class="btn change" id="sin" onclick="calculator.display('sin(')" name="sin">sin</button></div></td></tr><tr class="items__row"><td class="row__item"><div class="item__btn"><button class="btn change" id="log" onclick="calculator.display('log(')" name="log">log</button></div></td><td class="row__item"><div class="item__btn"><button class="btn change" id="√" onclick="calculator.display('√(')" name="√">√</button></div></td><td class="row__item"><div class="item__btn"><button class="btn potency change" id="^" onclick="calculator.potency()" name="^">x<sup>y</sup></button></div></td><td class="row__item"><div class="item__btn"><button class="btn change" id="π" onclick="calculator.display('π')" name="π">π</button></div></td></tr><tr class="items__row"><td class="row__item"><div class="item__btn"><button class="btn change" id="in" name="in" onclick="calculator.display('e')">e</button></div></td><td class="row__item"><div class="item__btn"><button class="btn change" id="cos" onclick="calculator.display('arcsin(')" name="cos">sin<sup>-1</sup></button></div></td><td class="row__item"><div class="item__btn"><button class="btn change" id="tan" onclick="calculator.display('arccos(')" name="tan">cos<sup>-1</sup></button></div></td><td class="row__item"><div class="item__btn"><button class="btn change" id="sin" onclick="calculator.display('arctan(')" name="sin">tan<sup>-1</sup></button></div></td></tr><tr class="items__row"><td class="row__item"><div class="item__btn"><button class="btn change" id="log" onclick="calculator.potencyE()" name="log">e<sup>x</sup></button></div></td><td class="row__item"><div class="item__btn"><button class="btn change" id="√" onclick="calculator.potency10()" name="√">10<sup>x</sup></button></div></td><td class="row__item"><div class="item__btn"><button class="btn potency change" id="^" onclick="calculator.root()" name="^"><sup>y</sup>√x</button></div></td><td class="row__item"><div class="item__btn"><button class="btn change" id="π" onclick="calculator.display('E')" name="π">EXP</button></div></td></tr><tr class="items__row"><td class="row__item"><div class="item__btn"><button class="btn number" id="ans" onclick="calculator.display('Ans')" name="Ans">Ans</button></div></td><td class="row__item"><div class="item__btn"><button class="btn" id="ac" onclick="calculator.delete()" name="ac">AC</button></div></td><td class="row__item"><div class="item__btn"><button class="btn calc" id="=" onclick="calculator.calc()" name="=">=</button></div></td></tr>`
+            })
+        }
+    </script>
+</body>
+</html>
