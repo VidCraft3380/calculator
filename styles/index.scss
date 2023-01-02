@@ -1,0 +1,183 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    list-style: none;
+    text-decoration: none;
+}
+html {
+    font-size: 62.5%;
+    font-family: sans-serif;
+}
+body {
+    background-color: #202124;
+    header {
+        nav{
+            background: #00123F;
+            height: 80px;
+            width: 100%;
+        }
+        .enlace{
+            position: absolute;
+            padding: 20px 50px;
+        }
+        .logo{
+            height: 40px;
+        }
+        .menu{
+            height: 40px;
+        }
+        nav ul{
+            float: right;
+            margin-right: 20px;
+        }
+        nav ul li{
+            display: inline-block;
+            line-height: 80px;
+            margin: 0 5px;
+        }
+        nav ul li a{
+            color: #fff;
+            font-size: 16px;
+            padding: 7px 13px;
+            border-radius: 3px;
+        }
+        li a.active, li a:hover{
+            background: #fff;
+            color: #000;
+            transition: .5s;
+        }
+        .checkbtn{
+            font-size: 30px;
+            color: #fff;
+            float: right;
+            line-height: 80px;
+            margin-right: 40px;
+            cursor: pointer;
+            display: none;
+        }
+        #check,
+        #open{
+            display: none;
+        }
+        section{
+            display: none;
+            background-size: cover;
+            background-position: center center;
+            height: calc(100vh - 80px);
+        }
+        
+        @media (max-width: 952px){
+            .enlace{
+                padding-left: 20px;
+            }
+            nav ul li a{
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 858px){
+            .checkbtn{
+                display: flex;
+                height: 100%;
+                align-items: center;
+            }
+            ul{
+                position: fixed;
+                width: 100%;
+                height: 100vh;
+                background: #42869B;
+                top: 80px;
+                left: -100%;
+                text-align: center;
+                transition: all .5s;
+            }
+            nav ul li{
+                display: block;
+                margin: 30px 0;
+                line-height: 30px;
+            }
+            nav ul li a{
+                font-size: 20px;
+            }
+            li a:hover, li a.active{
+                background: none;
+            }
+            #check:checked ~ ul{
+                left:0;
+            }
+        }
+    }
+    main {
+        .main__items {
+            display: block;
+            .items__list {
+                display: block;
+                width: 100%;
+                tbody {
+                    display: block;
+                    width: 100%;
+                    tr {
+                        display: flex;
+                        justify-content: space-around;
+                        width: 100%;
+                        margin-top: 30px;
+                        td {
+                            width: 120px;
+                            cursor: pointer;
+                            figure {
+                                display: block;
+                                width: 100%;
+                                height: 120px;
+                                margin-bottom: 15px;
+                                img {
+                                    display: block;
+                                    width: 100%;
+                                    height: 100%;
+                                }
+                            }
+                            span {
+                                display: block;
+                                width: 100%;
+                                text-align: center;
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media (max-width: 600px){
+        main {
+            .main__calculator {
+                .calculator__item {
+                    width: 300px;
+                    margin: 0 auto;
+                    .item__group {
+                        margin-bottom: 30px;
+                        .group__title {
+                        }
+                        input {
+                        }
+                        button {
+                        }
+                        select {
+                        }
+                    }
+                }
+                .calculator__result {
+                    .result__list {
+                        li {
+                            div {
+                            }
+                            .item__key {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
